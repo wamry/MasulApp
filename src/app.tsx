@@ -5,6 +5,7 @@ import {
   initialWindowMetrics,
   SafeAreaView,
 } from 'react-native-safe-area-context'
+import { Linking } from 'react-native'
 import { enableScreens } from 'react-native-screens'
 import { StatusBar } from '@components'
 import { RootStore, RootStoreProvider, setupRootStore } from '@store'
@@ -13,9 +14,6 @@ import ThemeProvider from '@theme/theme-provider'
 
 enableScreens(true)
 
-/**
- * This is the root component of our app.
- */
 export default function App() {
   const [rootStore, setRootStore] = useState<RootStore | undefined>(undefined)
 
@@ -29,13 +27,28 @@ export default function App() {
     })()
   }, [])
 
-  // Before we show the app, we have to wait for our state to be ready.
-  // In the meantime, don't render anything. This will be the background
-  // color set in native by rootView's background color. You can replace
-  // with your own loading component if you wish.
+  const linking = {
+    prefixes: ['masulnews://'],
+    config: {
+      screens: {
+        NewsStack: {
+          screens: {
+            News: 'article/:articleUrl',
+          },
+        },
+      },
+    },
+    async getInitialURL() {
+      // Check if app was opened from a deep link
+      const url = await Linking.getInitialURL()
+      if (url != null) {
+        return url
+      }
+    },
+  }
+
   if (!rootStore) return null
 
-  // otherwise, we're ready to render the app
   return (
     <>
       <StatusBar />
@@ -43,7 +56,7 @@ export default function App() {
         <RootStoreProvider value={rootStore}>
           <SafeAreaProvider initialMetrics={initialWindowMetrics}>
             <ThemeProvider>
-              <RootNavigator />
+              <RootNavigator linking={linking} />
             </ThemeProvider>
           </SafeAreaProvider>
         </RootStoreProvider>

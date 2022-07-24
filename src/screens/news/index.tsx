@@ -1,12 +1,13 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useContext, useEffect, useMemo, useState } from 'react'
 import { View, FlatList, RefreshControl, TextInput } from 'react-native'
 import { useTranslation } from 'react-i18next'
 import { observer } from 'mobx-react-lite'
 import { useStores, NewsArticleType } from '@store'
-import styles from './styles'
+import createStyles from './styles'
 import { NewsItem } from '@components'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { NewsStackNavigatorParamList } from '@navigation'
+import { ThemeContext } from '@theme/theme-provider'
 
 interface Props {
   navigation: StackNavigationProp<NewsStackNavigatorParamList, 'News'>
@@ -14,6 +15,8 @@ interface Props {
 
 export const NewsScreen = observer(({ navigation }: Props) => {
   const { t } = useTranslation()
+  const theme = useContext(ThemeContext)
+  const styles = createStyles(theme)
   const {
     newsFeedStore: { getNewsFeed, newsFeed, getNewsFeedLoading },
   } = useStores()

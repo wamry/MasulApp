@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
-import styles from './styles'
+import { ThemeContext } from '@theme/theme-provider'
+import React, { useContext, useEffect, useState } from 'react'
+import { View, Text, TouchableOpacity, ViewStyle } from 'react-native'
+import createStyles from './styles'
 
 type Props = {
   items: string[]
   currentIndex?: number
   onChangeActive: (index: number) => void
+  containerStyle?: ViewStyle
 }
 
-export const Toggle = ({ items, currentIndex = 0, onChangeActive }: Props) => {
+export const Toggle = ({ items, currentIndex = 0, onChangeActive, containerStyle }: Props) => {
   const [localCurrentIndex, setLocalCurrentIndex] = useState(currentIndex)
+  const theme = useContext(ThemeContext)
+  const styles = createStyles(theme)
 
   useEffect(() => {
     if (currentIndex === localCurrentIndex) return
@@ -35,10 +39,10 @@ export const Toggle = ({ items, currentIndex = 0, onChangeActive }: Props) => {
         ]}
         onPress={() => handleChangeActive(index)}
       >
-        <Text style={styles.label}>{item}</Text>
+        <Text style={[styles.label, isActive && { color: '#000' }]}>{item}</Text>
       </TouchableOpacity>
     )
   }
 
-  return <View style={styles.container}>{items.map(renderItem)}</View>
+  return <View style={[styles.container, containerStyle]}>{items.map(renderItem)}</View>
 }

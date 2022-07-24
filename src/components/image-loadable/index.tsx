@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { ActivityIndicator, Image, ImageProps, View } from 'react-native'
-import { colors } from 'theme'
 
 import { styles } from './styles'
 type HasSource = { source: { uri?: string } }
@@ -18,7 +17,7 @@ export const ImageLoadable = ({ source, ...otherProps }: ImageProps_) => {
       {source.uri && <Image {...otherProps} onLoadEnd={handleLoadEnd} source={source} />}
       {
         <ActivityIndicator
-          color={colors.activityIndicator}
+          color={'#ccc'}
           style={[styles.activityIndicator, { display: isImageLoaded ? 'none' : 'flex' }]}
         />
       }

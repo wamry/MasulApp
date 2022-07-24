@@ -1,15 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { StackScreenProps } from '@react-navigation/stack'
 import { useTranslation } from 'react-i18next'
 import { View, Text, ScrollView } from 'react-native'
 import { NewsStackNavigatorParamList } from '@navigation'
 import { ImageLoadable } from '@components'
-import styles from './styles'
+import createStyles from './styles'
+import { ThemeContext } from '@theme/theme-provider'
 
 interface Props extends StackScreenProps<NewsStackNavigatorParamList, 'NewsDetails'> {}
 
 export const NewsDetailsScreen = (props: Props) => {
   const { t } = useTranslation()
+  const theme = useContext(ThemeContext)
+  const styles = createStyles(theme)
   const data = props.route.params ?? {}
 
   return (

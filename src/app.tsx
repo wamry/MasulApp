@@ -9,6 +9,7 @@ import { enableScreens } from 'react-native-screens'
 import { StatusBar } from '@components'
 import { RootStore, RootStoreProvider, setupRootStore } from '@store'
 import { RootNavigator } from '@navigation/root-navigator'
+import ThemeProvider from '@theme/theme-provider'
 
 enableScreens(true)
 
@@ -41,7 +42,9 @@ export default function App() {
       <SafeAreaView style={{ flex: 1 }}>
         <RootStoreProvider value={rootStore}>
           <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-            <RootNavigator />
+            <ThemeProvider>
+              <RootNavigator />
+            </ThemeProvider>
           </SafeAreaProvider>
         </RootStoreProvider>
       </SafeAreaView>

@@ -1,9 +1,10 @@
 import type { NewsArticleType } from '@store'
-import React from 'react'
+import { ThemeContext } from '@theme/theme-provider'
+import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { View, Text, TouchableOpacity } from 'react-native'
 import { ImageLoadable } from '../image-loadable'
-import styles from './styles'
+import createStyles from './styles'
 
 type Props = {
   data: NewsArticleType
@@ -11,20 +12,24 @@ type Props = {
 }
 
 export const NewsItem = ({ data, onPress }: Props) => {
+  const theme = useContext(ThemeContext)
+  const styles = createStyles(theme)
   const { t } = useTranslation()
 
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.header} onPress={onPress}>
-        <Text style={styles.title}>{data.title}</Text>
-        {data.author && <Text style={styles.author}>{`${t('news:author')}: ${data.author}`}</Text>}
+        {data.title ? <Text style={styles.title}>{data.title}</Text> : null}
+        {data.author ? (
+          <Text style={styles.author}>{`${t('news:author')}: ${data.author}`}</Text>
+        ) : null}
       </TouchableOpacity>
       <View style={styles.body}>
         {data.urlToImage === null ? null : (
           <ImageLoadable style={styles.image} source={{ uri: data.urlToImage ?? undefined }} />
         )}
         <Text style={styles.description}>
-          {data.description ?? `${t('news:descriptionMissing')}...`}
+          {data.description ?? data.content ?? `${t('news:descriptionMissing')}...`}
         </Text>
       </View>
     </View>

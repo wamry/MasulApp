@@ -1,12 +1,12 @@
 {
   "common": {
-    "next": "next",
-    "news": "News",
-    "Settings": "Settings"
+    "next": "nexte",
+    "news": "Newse",
+    "Settings": "Settingse"
   },
   "news": {
-    "author": "Author",
-    "searchPlaceholder": "Search...",
-    "descriptionMissing": "Description missing for this article"
+    "author": "Authore",
+    "searchPlaceholder": "Searche...",
+    "descriptionMissing": "Descriptione missinge for thise article"
   }
 }

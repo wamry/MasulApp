@@ -22,7 +22,7 @@ export const NewsDetailsScreen = (props: Props) => {
       )}
       <View style={styles.header}>
         <Text style={styles.title}>{data.title}</Text>
-        {data.author && <Text style={styles.author}>{`${t('news:author')}: ${data.author}`}</Text>}
+        {data.author && <Text style={styles.author}>{`${t('author')}: ${data.author}`}</Text>}
       </View>
       <Text style={styles.description}>{data.content ? data.content : ''}</Text>
     </ScrollView>

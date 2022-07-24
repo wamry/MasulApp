@@ -1,12 +1,15 @@
 {
   "common": {
-    "next": "nexte",
-    "news": "Newse",
-    "Settings": "Settingse"
-  },
-  "news": {
-    "author": "Authore",
-    "searchPlaceholder": "Searche...",
-    "descriptionMissing": "Descriptione missinge for thise article"
+    "articleInfo": "Informations sur l'article",
+    "author": "Auteur(e)",
+    "dark": "Sombre",
+    "descriptionMissing": "Description manquante pour cet article",
+    "english": "Anglaise",
+    "french": "Française",
+    "light": "Lumière",
+    "news": "Nouvelles",
+    "next": "Suivante",
+    "searchPlaceholder": "Chercher...",
+    "settings": "réglages"
   }
 }

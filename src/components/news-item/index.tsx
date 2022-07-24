@@ -20,16 +20,14 @@ export const NewsItem = ({ data, onPress }: Props) => {
     <View style={styles.container}>
       <TouchableOpacity style={styles.header} onPress={onPress}>
         {data.title ? <Text style={styles.title}>{data.title}</Text> : null}
-        {data.author ? (
-          <Text style={styles.author}>{`${t('news:author')}: ${data.author}`}</Text>
-        ) : null}
+        {data.author ? <Text style={styles.author}>{`${t('author')}: ${data.author}`}</Text> : null}
       </TouchableOpacity>
       <View style={styles.body}>
         {data.urlToImage === null ? null : (
           <ImageLoadable style={styles.image} source={{ uri: data.urlToImage ?? undefined }} />
         )}
         <Text style={styles.description}>
-          {data.description ?? data.content ?? `${t('news:descriptionMissing')}...`}
+          {data.description ?? data.content ?? `${t('descriptionMissing')}...`}
         </Text>
       </View>
     </View>

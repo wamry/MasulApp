@@ -1,12 +1,15 @@
 {
   "common": {
-    "next": "next",
-    "news": "News",
-    "Settings": "Settings"
-  },
-  "news": {
+    "articleInfo": "Article Info",
     "author": "Author",
+    "dark": "Dark",
+    "descriptionMissing": "Description missing for this article",
+    "english": "English",
+    "french": "French",
+    "light": "Light",
+    "news": "News",
+    "next": "next",
     "searchPlaceholder": "Search...",
-    "descriptionMissing": "Description missing for this article"
+    "settings": "Settings"
   }
 }

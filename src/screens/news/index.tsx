@@ -69,7 +69,13 @@ export const NewsScreen = observer(({ navigation, route }: Props) => {
       </View>
       <FlatList
         ref={flatListRef}
-        refreshControl={<RefreshControl refreshing={getNewsFeedLoading} onRefresh={getNewsFeed} />}
+        refreshControl={
+          <RefreshControl
+            refreshing={getNewsFeedLoading}
+            onRefresh={getNewsFeed}
+            tintColor={theme.colors.refreshIndicator}
+          />
+        }
         contentContainerStyle={styles.listContentContainer}
         data={listData}
         renderItem={renderItem}

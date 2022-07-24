@@ -1,0 +1,12 @@
+{
+  "common": {
+    "next": "next",
+    "news": "News",
+    "Settings": "Settings"
+  },
+  "news": {
+    "author": "Author",
+    "searchPlaceholder": "Search...",
+    "descriptionMissing": "Description missing for this article"
+  }
+}

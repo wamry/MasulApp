@@ -15,3 +15,4 @@ to run the app with deeplinking, deeplink url must start with `masulnews://`, to
 #### example: 
 - to automatically scroll to article with url => https://www.cnn.com/2022/07/24/media/nope-box-office-jordan-peele/index.html
 - the deeplink url should be `masulnews://article/nope-box-office-jordan-peele`
+- the news report article used in this test has to be included in the list of news that the can be fetched by the api endpoint `/v2/top-headlines`

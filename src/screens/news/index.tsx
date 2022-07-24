@@ -5,10 +5,14 @@ import { observer } from 'mobx-react-lite'
 import { useStores, NewsArticleType } from '@store'
 import styles from './styles'
 import { NewsItem } from '@components'
+import { StackNavigationProp } from '@react-navigation/stack'
+import { NewsStackNavigatorParamList } from '@navigation'
 
-type Props = {}
+interface Props {
+  navigation: StackNavigationProp<NewsStackNavigatorParamList, 'News'>
+}
 
-export const NewsScreen = observer(({}: Props) => {
+export const NewsScreen = observer(({ navigation }: Props) => {
   const { t } = useTranslation()
   const {
     newsFeedStore: { getNewsFeed, newsFeed, getNewsFeedLoading },
@@ -17,21 +21,23 @@ export const NewsScreen = observer(({}: Props) => {
 
   const setSearchText = (val: string) => setSearchText_(val ? val.toLowerCase() : '')
 
+  useEffect(() => {
+    getNewsFeed()
+  }, [])
+
   const listData = useMemo(() => {
     return searchText !== ''
       ? newsFeed.filter((el) => el.title.toLowerCase().includes(searchText))
       : newsFeed
   }, [searchText, newsFeed])
 
-  useEffect(() => {
-    getNewsFeed()
-  }, [])
-
-  useEffect(() => {}, [newsFeed])
-
-  const renderItem = ({ item }: { item: NewsArticleType }) => {
-    return <NewsItem data={item} />
+  const handlePressItem = (data: NewsArticleType) => {
+    navigation.navigate('NewsDetails', data)
   }
+
+  const renderItem = ({ item }: { item: NewsArticleType }) => (
+    <NewsItem data={item} onPress={() => handlePressItem(item)} />
+  )
 
   return (
     <View style={styles.container}>

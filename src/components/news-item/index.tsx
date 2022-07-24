@@ -7,14 +7,15 @@ import styles from './styles'
 
 type Props = {
   data: NewsArticleType
+  onPress: () => void
 }
 
-export const NewsItem = ({ data }: Props) => {
+export const NewsItem = ({ data, onPress }: Props) => {
   const { t } = useTranslation()
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.header} onPress={() => {}}>
+      <TouchableOpacity style={styles.header} onPress={onPress}>
         <Text style={styles.title}>{data.title}</Text>
         {data.author && <Text style={styles.author}>{`${t('news:author')}: ${data.author}`}</Text>}
       </TouchableOpacity>
